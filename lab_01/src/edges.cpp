@@ -13,6 +13,11 @@ static error_t read_edges_number(int &edges_number, file_ptr const f)
     return rc;
 }
 
+bool edge_arr_has_empty_data(const edge_arr_t &edges)
+{
+    return (edges.data == NULL);
+}
+
 static error_t free_edges_data(edge_t **data)
 {
     if ((data == NULL) || (*data == NULL))

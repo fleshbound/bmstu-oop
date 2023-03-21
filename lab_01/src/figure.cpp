@@ -5,9 +5,8 @@
 
 static bool is_empty_figure(const figure_t &figure)
 {
-    return ((figure.edges.data == NULL) || (figure.points.data == NULL));
+    return ((point_arr_has_empty_data(figure.points)) || (edge_arr_has_empty_data(figure.edges)));
 }
-
 
 figure_t &init_figure(void)
 {

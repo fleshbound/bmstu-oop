@@ -1,9 +1,14 @@
 #include "canvas.h"
 #include "points.h"
 
+static bool has_empty_scene(const canvas_t &canvas)
+{
+    return canvas.scene == NULL;
+}
+
 error_t clear_canvas(const canvas_t &canvas)
 {
-    if (canvas.scene == NULL)
+    if (has_empty_scene(canvas))
         return CANVAS_ERROR;
 
     canvas.scene->clear();
@@ -13,7 +18,7 @@ error_t clear_canvas(const canvas_t &canvas)
 
 static error_t draw_line(const canvas_t &canvas, const point_t p1, const point_t p2)
 {
-    if (canvas.scene == NULL)
+    if (has_empty_scene(canvas))
         return CANVAS_ERROR;
 
     canvas.scene->addLine(p1.x, p1.y, p2.x, p2.y, QPen(Qt::white, 2));
@@ -73,7 +78,7 @@ static error_t draw_edges(const canvas_t &canvas, const point_arr_t &canvas_poin
     if ((canvas_points.data == NULL) || (edges.data == NULL))
         return NULL_PARAM_ERROR;
 
-    if (canvas.scene == NULL)
+    if (has_empty_scene(canvas))
         return CANVAS_ERROR;
 
     edge_line_t curr_edge_line;
@@ -90,7 +95,7 @@ static error_t draw_edges(const canvas_t &canvas, const point_arr_t &canvas_poin
 
 error_t draw_figure(canvas_t &canvas, const figure_t &figure)
 {
-    if (canvas.scene == NULL)
+    if (has_empty_scene(canvas))
         return CANVAS_ERROR;
 
     error_t rc = clear_canvas(canvas);

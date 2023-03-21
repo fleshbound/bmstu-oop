@@ -12,5 +12,6 @@ error_t shift_points(point_arr_t &points, mod_data_t mod_data);
 error_t rotate_points(point_arr_t &points, mod_data_t mod_data);
 void init_points(point_arr_t &points);
 error_t alloc_points_data(point_t **data, const int &number);
+bool point_arr_has_empty_data(const point_arr_t &points);
 
 #endif // POINTS_H

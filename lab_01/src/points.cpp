@@ -7,6 +7,11 @@ void init_points(point_arr_t &points)
     points.number = 0;
 }
 
+bool point_arr_has_empty_data(const point_arr_t &points)
+{
+    return (points.data == NULL);
+}
+
 static error_t read_points_number(int &points_number, file_ptr const f)
 {
     if (f == NULL)
