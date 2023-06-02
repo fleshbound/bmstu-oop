@@ -7,20 +7,20 @@
 #include <ctime>
 #include <utility>
 
-#define ERROR_MSG_BUFFER_SIZE 512
+constexpr auto ERROR_MSG_BUFFER_SIZE = 512;
 
-class BaseError : public std::exception 
+class BaseException: public std::exception 
 {
 public:
-    BaseError(
+    BaseException(
         const char *filename, 
         const char *funcname, 
         const int line,
         const char *time, 
-        const char *errinfo = "Error!")
+        const char *info = "Exception!")
     {
         snprintf(msg, sizeof(msg) + 1, "\nIn file: %s, in function: %s, at line: %d, at: %s\nOccured: %s",
-                 filename, funcname, line, time, errinfo);
+                 filename, funcname, line, time, info);
     }
 
     virtual const char *what() const noexcept override 
